@@ -1,0 +1,18 @@
+ion-avatar {
+  --border-radius: 4px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.skeleton-item {
+  height: 10px;
+  border-radius: 8px;
+
+  &:nth-of-type(even) {
+    width: 50%;
+  }
+
+  &:nth-of-type(odd) {
+    width: 60%;
+  }
+}

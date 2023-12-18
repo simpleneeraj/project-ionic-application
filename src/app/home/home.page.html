@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>G00411282</ion-title>
+  </ion-toolbar>
+  <ion-progress-bar *ngIf="isLoading" type="indeterminate"></ion-progress-bar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">G00411282</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-searchbar
+      [disabled]="isLoading"
+      animated="true"
+      placeholder="Search country"
+      [debounce]="500"
+      (ionInput)="onSearchInput($event)"
+    ></ion-searchbar>
+  </ion-list>
+  <ion-list *ngIf="filteredData && !isLoading">
+    <ion-item
+      [routerLink]="['/country-details/', country.ccn3]"
+      *ngFor="let country of filteredData"
+    >
+      <ion-avatar slot="start">
+        <img [alt]="country?.flags?.alt" [src]="country.flags.svg" />
+      </ion-avatar>
+      <ion-label> {{ country?.name?.common }} </ion-label>
+      <ion-button
+        style="display: flex; align-items: center; gap: 4px"
+        fill="clear"
+        size="small"
+        aria-label="Go to Country Details"
+      >
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="isLoading " lines="full" [inset]="true">
+    <ion-item *ngFor="let _ of counterArray; let i = index">
+      <ion-skeleton-text animated class="skeleton-item"></ion-skeleton-text>
+    </ion-item>
+  </ion-list>
+</ion-content>
